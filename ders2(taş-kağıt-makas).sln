@@ -1,25 +1,115 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.7.34202.233
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ders2(taş-kağıt-makas)", "ders2(taş-kağıt-makas)\ders2(taş-kağıt-makas).csproj", "{0322CA56-FF7E-4520-AE7A-46AE1B06272F}"
-EndProject
-Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0322CA56-FF7E-4520-AE7A-46AE1B06272F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0322CA56-FF7E-4520-AE7A-46AE1B06272F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0322CA56-FF7E-4520-AE7A-46AE1B06272F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0322CA56-FF7E-4520-AE7A-46AE1B06272F}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {36A1A712-7D20-494B-B60D-4260CE6E6BA8}
-	EndGlobalSection
-EndGlobal
+using System;
+using System.Formats.Asn1;
+
+namespace game
+{
+    class program
+    {
+         static void Main(string[] args)
+         {
+            Random random = new Random();
+            bool playAgain = true;
+            String player;
+            String computer;
+            String answer;
+
+            while (playAgain) 
+            {
+                player = "";
+                computer = "";
+                answer = "";
+
+                while (player != "ROCK" && player != "PAPER" && player != "SCISSORS")
+                {
+                    Console.Write("Enter ROCK, PAPER, or SCISSORS: ");
+                    player = Console.ReadLine();
+                    player = player.ToUpper();
+                }
+
+                switch (random.Next(1, 4))
+                {
+                    case 1:
+                        computer = "ROCK";
+                        break;
+                    case 2:
+                        computer = "PAPER";
+                        break;
+                    case 3:
+                        computer = "SCISSORS";
+                        break;
+
+                }
+
+             Console.WriteLine("Player: " + player);
+
+             Console.WriteLine("Computer: " + computer);
+
+
+
+                switch (player)
+                {
+                    case "ROCK":
+                        if (computer == "ROCK")
+                        {
+                            Console.WriteLine("It's a Draw!");
+                        }
+                        else if (computer == "PAPER")
+                        {
+                            Console.WriteLine("You lose!");
+                        }
+                        else
+                        {
+                            Console.WriteLine("You Win!");
+                        }
+                        break;
+                    case "PAPER":
+                        if (computer == "PAPER")
+                        {
+                            Console.WriteLine("It's a Draw!");
+                        }
+                        else if (computer == "ROCK")
+                        {
+                            Console.WriteLine("You Win!");
+                        }
+                        else
+                        {
+                            Console.WriteLine("You lose!");
+                        }
+                        break;
+                    case "SCISSORS":
+                        if (computer == "SCISSORS")
+                        {
+                            Console.WriteLine("It's a Draw!");
+                        }
+                        else if (computer == "ROCK")
+                        {
+                            Console.WriteLine("You Lose!");
+                        }
+                        else
+                        {
+                            Console.WriteLine("You Win!");
+                        }
+                        break;
+                }
+
+                Console.Write("Would  you like to play again(Y/N): ");
+                answer = Console.ReadLine();
+                answer = answer.ToUpper();
+
+                if (answer == "Y")
+                {
+                    playAgain = true;
+                }
+                else 
+                { 
+                    playAgain = false;
+                    Console.WriteLine("Thanks for playing!");
+                    Console.WriteLine("Goodbye!");
+                }
+                
+            }
+
+            Console.ReadKey();
+         }
+    }
+}
